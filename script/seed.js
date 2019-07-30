@@ -1,7 +1,8 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Cupcake} = require('../server/db/models')
+const cupcakes = require('../server/seedFiles/cupcakes')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,8 +13,16 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  //adding cupcakes to my table
+  await Promise.all(
+    cupcakes.map(cupcake => {
+      return Cupcake.create(cupcake)
+    })
+  )
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
+  console.log(`seeded ${cupcakes.length} cupcakes`)
 }
 
 // We've separated the `seed` function from the `runSeed` function.
