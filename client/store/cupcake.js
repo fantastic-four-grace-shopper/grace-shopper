@@ -36,9 +36,7 @@ export const getAllCupcakes = () => async dispatch => {
 
 export const getSingleCupcake = cupcakeId => async dispatch => {
   try {
-    console.log('CUPCAKE ID', cupcakeId)
     const {data} = await axios.get(`/api/cupcakes/${cupcakeId}`)
-    console.log('THIS IS DATA', data)
     dispatch(gotSingleCupcake(data))
   } catch (error) {
     console.error(error)

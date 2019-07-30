@@ -9,7 +9,6 @@ class SingleCupcake extends React.Component {
   }
   render() {
     const cupcake = this.props.single
-    console.log(cupcake)
     return (
       <div>
         <h1>{cupcake.name}</h1>

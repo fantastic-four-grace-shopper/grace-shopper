@@ -13,9 +13,9 @@ class AllCupcakes extends React.Component {
     return (
       <div>
         <h3>Cupcakes</h3>
-        <div>
+        <div id="allCupcakesContainer">
           {cupcakes.map(cupcake => (
-            <div key={cupcake.id}>
+            <div key={cupcake.id} className="cupBox">
               <Link to={`/cupcakes/${cupcake.id}`}>
                 <img src={cupcake.imageUrl} />
                 <p> {cupcake.name} </p>
@@ -37,7 +37,6 @@ class AllCupcakes extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    // ...state,
     cupcakes: state.cupcake.all
   }
 }
