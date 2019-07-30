@@ -1,6 +1,16 @@
+* {
+  box-sizing: border-box;
+  font-family: arial, sans-serif;
+}
+
 body {
-  font-family: sans-serif;
-  display: block;
+  background-color: rgb(223, 175, 223);
+  color: purple;
+  text-align: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
 }
 
 a {
@@ -31,6 +41,7 @@ img {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  align-content: space-around;
 }
 
 .cupBox {
