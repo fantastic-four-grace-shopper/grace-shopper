@@ -2,10 +2,20 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllCupcakes} from '../store/cupcake'
+import ls from 'local-storage'
 
 class AllCupcakes extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      localStorage: ls.get('name')
+    }
+  }
   componentDidMount() {
     this.props.getAllCupcakes()
+    ls.set('name', 'Hello there')
+
+    console.log('this is our this.state', this.state)
   }
   render() {
     const cupcakes = this.props.cupcakes
