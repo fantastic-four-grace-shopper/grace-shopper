@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  display: block;
 }
 
 a {
@@ -18,4 +19,20 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+#allCupcakesContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cupBox {
+  flex-basis: 33%;
 }
