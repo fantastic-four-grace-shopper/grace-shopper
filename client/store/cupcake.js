@@ -37,7 +37,7 @@ export const getAllCupcakes = () => async dispatch => {
 /**
  * REDUCER
  */
-const cupcakeReducer = (state = initialState, action) => {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_CUPCAKES:
       return {...state, all: action.all}
@@ -45,5 +45,3 @@ const cupcakeReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default cupcakeReducer
