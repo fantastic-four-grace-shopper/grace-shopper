@@ -14,6 +14,12 @@ class SingleCupcake extends React.Component {
         <h1>{cupcake.name}</h1>
         <img src={cupcake.imageUrl} />
         <p>{cupcake.description}</p>
+        <p> {cupcake.price} $</p>
+
+        <form>
+          <input type="number" name="quantity" min="0" max="100" />
+          <input type="submit" name="addToCart" value="Add to Cart" />
+        </form>
       </div>
     )
   }
