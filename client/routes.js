@@ -34,6 +34,7 @@ class Routes extends Component {
         <Route exact path="/cupcakes" component={AllCupcakes} />
         <Route exact path="/cupcakes/:id" component={SingleCupcake} />
         <Route exact path="/cart" component={CartView} />
+        <Route exact path="/natalie" component={Login} />
 
         {/* // render={routeProps => <SingleCupcake {...routeProps} />} */}
       </Switch>
