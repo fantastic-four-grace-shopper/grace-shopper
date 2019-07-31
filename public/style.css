@@ -30,7 +30,11 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-
+.cart {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
 img {
   width: 100px;
   height: 100px;
@@ -46,4 +50,15 @@ img {
 
 .cupBox {
   flex-basis: 33%;
+}
+#links {
+  display: flex;
+  flex-basis: 40%;
+  justify-content: space-around;
+}
+
+#cartLink {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
 }
