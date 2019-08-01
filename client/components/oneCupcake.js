@@ -9,10 +9,12 @@ import {postCartThunk} from '../store/cart'
 class SingleCupcake extends React.Component {
   constructor(props) {
     super(props)
+    console.log('this is our PROPS', props)
     this.state = {
       quantity: 0,
-      id: this.props.single.id
+      cupcakeId: this.props.match.params.id
     }
+
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -56,6 +58,8 @@ class SingleCupcake extends React.Component {
 
   render() {
     const cupcake = this.props.single
+
+    console.log('This is our state', this.state)
     //ls.clear() put it in component checkout so that localstorage gets reseted
     return (
       <div>
