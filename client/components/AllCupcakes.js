@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllCupcakes} from '../store/cupcake'
-
+import Navbar from './navbar'
 class AllCupcakes extends React.Component {
   constructor(props) {
     super(props)
@@ -16,6 +16,7 @@ class AllCupcakes extends React.Component {
     const cupcakes = this.props.cupcakes
     return (
       <div>
+        {/* <Navbar /> */}
         <h3>Cupcakes</h3>
         <div id="allCupcakesContainer">
           {cupcakes.map(cupcake => (
