@@ -75,60 +75,51 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// //POST request to add an item to a user's cart
-// router.post('/', async (req, res, next) => {
-//   try {
-//     const cupcakeId = req.body.cupcakeId
-//     const quantity = req.body.quantity
-//     const foundOrder = await Order.findOne({
-//       where: {
-//         id: req.body.orderId
-//       }
-//     })
-//     const orderId = foundOrder.id
-//     if (cupcakeId) {
-//       const cupcakeToUpdate = await OrderCupcake.findOne({
-//         where: {
-//           id: cupcakeId,
-//           orderId
-//         }
-//       })
-//       let oldQuantity = cupcakeToUpdate.quantity
-//       let newQuantity = (oldQuantity += quantity)
-//       cupcakeToUpdate.quantity = newQuantity
-//       res.json(cupcakeToUpdate)
-//     } else {
-//       const newCupcake = await OrderCupcake.create({
-//         orderId,
-//         cupcakeId,
-//         quantity
-//       })
-//       res.json(newCupcake)
-//     }
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-//DELETE request to delete an item from a user's cart
-router.delete('/:cupcakeId', async (req, res, next) => {
+router.put('/checkout', async (req, res, next) => {
   try {
-    const cupcakeToDelete = await OrderCupcake.destroy({
+    const foundOrder = await Order.findOne({
       where: {
-        cupcakeId: req.params.cupcakeId,
-        orderId: req.body.orderId
+        userId: req.user.id,
+        completed: false
       }
     })
-    res.json(cupcakeToDelete)
+    const updatedOrder = await foundOrder.update({completed: true})
+    res.json(updatedOrder)
   } catch (err) {
     next(err)
   }
 })
 
-//PUT request to update a user's cart's specific cupcake quantity
-router.put('/:cupcakeId', async (req, res, next) => {
+router.delete('/empty', async (req, res, next) => {
   try {
-    //insert code ehre
+    const orderToDelete = await Order.destroy({
+      where: {
+        userId: req.user.id,
+        completed: false
+      }
+    })
+    res.json(orderToDelete)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.delete('/deleteCupcake', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    const foundOrder = await Order.findOne({
+      where: {
+        userId,
+        completed: false
+      }
+    })
+    const deleted = await OrderCupcake.destroy({
+      where: {
+        cupcakeId: req.body.cupcakeId,
+        orderId: foundOrder.id
+      }
+    })
+    res.json(deleted)
   } catch (err) {
     next(err)
   }
