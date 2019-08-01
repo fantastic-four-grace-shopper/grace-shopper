@@ -4,20 +4,21 @@ module.exports = router
 
 //All of the below routes are already mounted on /api/order
 
-//GET request to retrieve all of a user's completed orders
-router.get('/', async (req, res, next) => {
-  try {
-    const allCompletedUserOrders = await Order.findAll({
-      where: {
-        userId: req.user.id,
-        completed: true
-      }
-    })
-    res.json(allCompletedUserOrders)
-  } catch (err) {
-    next(err)
-  }
-})
+//GET request to retrieve all of a user's completed orders -- TIER 2
+// router.get('/', async (req, res, next) => {
+//   try {
+//     //check if req.user.id is valid
+//     const allCompletedUserOrders = await Order.findAll({
+//       where: {
+//         userId: req.user.id,
+//         completed: true
+//       }
+//     })
+//     res.json(allCompletedUserOrders)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 //GET request to retrieve all of a user's not completed orders
 router.get('/notComplete', async (req, res, next) => {
@@ -35,18 +36,18 @@ router.get('/notComplete', async (req, res, next) => {
 })
 
 //GET request to retrieve a user's specific order
-router.get('/:orderId', async (req, res, next) => {
-  try {
-    const order = await Order.findOne({
-      where: {
-        id: req.params.orderId
-      }
-    })
-    res.json(order)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.get('/:orderId', async (req, res, next) => {
+//   try {
+//     const order = await Order.findOne({
+//       where: {
+//         id: req.params.orderId
+//       }
+//     })
+//     res.json(order)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 //POST request to create a user's new order
 router.post('/', async (req, res, next) => {
