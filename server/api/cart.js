@@ -38,6 +38,43 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//POST request to add an item to a user's cart
+router.post('/', async (req, res, next) => {
+  try {
+    const userId = req.user.id
+    let foundOrder = await Order.findOne({
+      where: {
+        completed: false,
+        userId
+      }
+    })
+    if (!foundOrder) {
+      foundOrder = await Order.create({userId})
+    }
+
+    const cupcakeToUpdate = await OrderCupcake.findOne({
+      where: {
+        cupcakeId: req.body.cupcakeId
+      }
+    })
+    if (cupcakeToUpdate) {
+      const newQuantity =
+        Number(cupcakeToUpdate.quantity) + Number(req.body.quantity)
+      cupcakeToUpdate.update({quantity: newQuantity})
+      res.json(cupcakeToUpdate)
+    } else {
+      const newOrderCupcake = await OrderCupcake.create({
+        quantity: req.body.quantity,
+        cupcakeId: req.body.cupcakeId,
+        orderId: foundOrder.id
+      })
+      res.json(newOrderCupcake)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 // //POST request to add an item to a user's cart
 // router.post('/', async (req, res, next) => {
 //   try {
