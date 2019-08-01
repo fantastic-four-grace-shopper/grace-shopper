@@ -12,7 +12,7 @@ const DELETE_ORDER = 'DELETE-ORDER'
  * INITIAL STATE
  */
 const initialCartstate = {
-  newOrder: {quantity: null, id: null}, //item added to cart, goes to database
+  newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
   myOrder: [] //coming from database
 }
 
@@ -41,6 +41,7 @@ export const postCartThunk = order => async dispatch => {
   try {
     const res = await axios.post('/api/cart', order)
     const newOrder = res.data
+    console.log('this is our ORDER', res.data)
     dispatch(postedOrder(newOrder))
   } catch (err) {
     console.log('posting does not work', err)

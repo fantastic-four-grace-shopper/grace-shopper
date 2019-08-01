@@ -11,17 +11,16 @@ class CartView extends React.Component {
     this.props.getCartThunk()
   }
   render() {
-    //const cupcakes = this.props.cupcakes
+    function total(arr) {
+      let sumTotal = 0
+      for (let i = 0; i < arr.length; i++) {
+        let obj = arr[i]
+        let sum = obj.price * obj.quantity
+        sumTotal += sum
+      }
+      return sumTotal
+    }
     //const items = window.ls.geti
-    // const total = () => {
-    //   let sumTotal = 0
-    //   for (let i = 0; i < this.state.items.length; i++) {
-    //     let obj = this.state.items[i]
-    //     let multi = obj.price * obj.quantity
-    //     sumTotal += multi
-    //   }
-    //   return sumTotal
-    // }
 
     return (
       <div>
@@ -32,17 +31,20 @@ class CartView extends React.Component {
               <img src={cupcakeObj.imageUrl} />
               <p> {cupcakeObj.name} </p>
               <p> {cupcakeObj.price} $</p>
-              <p> {cupcakeObj.quantity} cupcakes </p>
+              <p>
+                {' '}
+                {cupcakeObj.quantity} cupcakes,{' '}
+                {cupcakeObj.price * cupcakeObj.quantity} ${' '}
+              </p>
               <button
                 type="submit"
                 onClick={() => this.props.deleteOrderThunk(cupcakeObj.id)}
               >
                 Remove order
               </button>
-              {/* {we will have to look into updating the quantity and remove} */}
             </div>
           ))}
-          <p>Your Total: {}</p>
+          <p>Your Total: {total(this.props.order)} $</p>
         </div>
       </div>
     )
@@ -59,7 +61,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCartThunk: () => dispatch(getCartThunk()),
-    deleteOrderThunk: id => dispatch(deleteOrderThunk())
+    deleteOrderThunk: id => dispatch(deleteOrderThunk(id))
   }
 }
 
