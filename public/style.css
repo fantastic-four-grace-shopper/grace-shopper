@@ -62,3 +62,23 @@ img {
   justify-content: center;
   align-items: baseline;
 }
+
+.creditCardForm,
+.itemSummary {
+  max-width: 400px;
+  background-color: #fff;
+  margin: 100px auto;
+  color: #4c4e56;
+}
+
+.itemSummary {
+  text-align: center;
+}
+
+#confirmButton {
+  width: 300px;
+  font-size: 24px;
+  background-color: #2ec4a5;
+  color: white;
+  margin-bottom: 20px;
+}

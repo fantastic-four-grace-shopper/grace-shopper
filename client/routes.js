@@ -7,6 +7,7 @@ import {me} from './store'
 import AllCupcakes from './components/AllCupcakes'
 import SingleCupcake from './components/oneCupcake'
 import CartView from './components/CartView'
+import CheckOut from './components/checkout'
 
 /**
  * COMPONENT
@@ -37,6 +38,12 @@ class Routes extends Component {
         <Route exact path="/cupcakes/:id" component={SingleCupcake} />
         <Route exact path="/cart" component={CartView} />
         <Route exact path="/natalie" component={Login} />
+
+        {/* DELETE LATTTTERRRRRR */}
+
+        <Route exact path="/checkout" component={CheckOut} />
+
+        {/* DELETE LATTTTERRRRRR */}
 
         {/* // render={routeProps => <SingleCupcake {...routeProps} />} */}
       </Switch>
