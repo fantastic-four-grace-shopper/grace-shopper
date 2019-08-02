@@ -104,7 +104,7 @@ router.delete('/empty', async (req, res, next) => {
   }
 })
 
-router.delete('/deleteCupcake', async (req, res, next) => {
+router.delete('/:cupcakeId', async (req, res, next) => {
   try {
     const userId = req.user.id
     const foundOrder = await Order.findOne({
@@ -115,7 +115,7 @@ router.delete('/deleteCupcake', async (req, res, next) => {
     })
     const deleted = await OrderCupcake.destroy({
       where: {
-        cupcakeId: req.body.cupcakeId,
+        cupcakeId: req.params.cupcakeId,
         orderId: foundOrder.id
       }
     })
