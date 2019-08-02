@@ -1,4 +1,3 @@
-import ls from 'local-storage'
 import React from 'react'
 import {getCartThunk, deleteOrderThunk} from '../store/cart'
 import {connect} from 'react-redux'
