@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getAllCupcakes} from '../store/cupcake'
 import Navbar from './navbar'
+
 class AllCupcakes extends React.Component {
   constructor(props) {
     super(props)
@@ -21,11 +22,11 @@ class AllCupcakes extends React.Component {
         <div id="allCupcakesContainer">
           {cupcakes.map(cupcake => (
             <div key={cupcake.id} className="cupBox">
-              <Link to={`/cupcakes/${cupcake.id}`}>
+              <Link to={`/cupcake/${cupcake.id}`}>
                 <img className="cupcakes" src={cupcake.imageUrl} />
                 <p> {cupcake.name} </p>
               </Link>
-              <p> {cupcake.price} $</p>
+              <p> ${cupcake.price}</p>
             </div>
           ))}
         </div>
