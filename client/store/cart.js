@@ -41,14 +41,13 @@ export const postCartThunk = order => async dispatch => {
   try {
     const res = await axios.post('/api/cart', order)
     const newOrder = res.data
-    console.log('this is our ORDER', res.data)
     dispatch(postedOrder(newOrder))
   } catch (err) {
     console.log('posting does not work', err)
   }
 }
 
-export const getCartThunk = order => async dispatch => {
+export const getCartThunk = () => async dispatch => {
   try {
     const res = await axios.get('/api/cart')
     const myOrder = res.data
