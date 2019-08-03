@@ -2,6 +2,7 @@ import ls from 'local-storage'
 import React from 'react'
 import {getCartThunk, deleteOrderThunk} from '../store/cart'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class CartView extends React.Component {
   constructor(props) {
@@ -45,6 +46,11 @@ class CartView extends React.Component {
             </div>
           ))}
           <p>Your Total: {total(this.props.order)} $</p>
+          {this.props.order.length > 0 && (
+            <Link to="/checkout">
+              <button>Checkout</button>
+            </Link>
+          )}
         </div>
       </div>
     )
