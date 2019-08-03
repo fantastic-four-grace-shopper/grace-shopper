@@ -59,23 +59,28 @@ router.post('/', async (req, res, next) => {
       if (req.session.cart.length === 0) {
         req.session.cart.push(newOrder)
         req.session.save()
+      } else if (
+        req.session.cart.every(function(cupcake) {
+          return cupcake.id !== newOrder.id
+        })
+      ) {
+        req.session.cart.push(newOrder)
+        req.session.save()
       } else {
+        // if cupcake is in cart already then update number
         for (let i = 0; i < req.session.cart.length; i++) {
           let oldOrder = req.session.cart[i]
           if (oldOrder.id === newOrder.id) {
             console.log('THIS IS TRUE')
             const newSum = Number(oldOrder.quantity) + Number(newOrder.quantity)
             console.log('This is the new sum', newSum)
-
             oldOrder.quantity = String(newSum)
             req.session.save()
-          } else {
-            console.log('THIS IS FALSE')
-            req.session.cart.push(newOrder)
-            // req.session.save()
           }
         }
+        req.session.save()
       }
+      req.session.save()
     } else {
       const userId = req.user.id
       let foundOrder = await Order.findOne({
