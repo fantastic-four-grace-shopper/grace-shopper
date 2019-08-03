@@ -7,6 +7,10 @@ module.exports = router
 //GET route to get all cupcakes
 router.get('/', async (req, res, next) => {
   try {
+    // req.session.destroy()
+    if (req.session.cart === undefined) {
+      req.session.cart = []
+    }
     const cupcakes = await Cupcake.findAll()
     res.json(cupcakes)
   } catch (err) {
