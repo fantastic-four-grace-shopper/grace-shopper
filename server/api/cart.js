@@ -1,3 +1,5 @@
+/* eslint-disable complexity */
+/* eslint-disable max-statements */
 const router = require('express').Router()
 const OrderCupcake = require('../db/models/orderCupcake')
 const Order = require('../db/models/order')
@@ -12,6 +14,7 @@ router.get('/', async (req, res, next) => {
   try {
     if (req.user === undefined) {
       console.log('REQ.SESSION IS: ', req.session)
+      res.json(req.session.cart)
     } else {
       const userId = req.user.id
       if (userId) {
@@ -48,27 +51,29 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     if (req.user === undefined) {
-      if (req.session.cart === undefined) {
-        req.session.cart.hello = 'enida'
-        console.log(req.session.cart.hello)
-        console.log('you made it')
-        const cupcakeFromDb = await Cupcake.findByPk({
-          where: {
-            id: req.body.cupcakeId
-          }
-        })
-        // console.log(cupcakeFromDb)
-        req.session.cart.cupcakeIdOnCart = cupcakeFromDb
-        req.session.cart.cupcakeIdOnCart.quantity = req.body.quantity
+      let cupcakeForCart = await Cupcake.findByPk(req.body.cupcakeId)
+      cupcakeForCart.dataValues.quantity = req.body.quantity
+      let newOrderCupcake = cupcakeForCart
+      let newOrder = newOrderCupcake.dataValues
+
+      if (req.session.cart.length === 0) {
+        req.session.cart.push(newOrder)
+        req.session.save()
       } else {
-        let cupcakeIdOnCart = req.body.cupcakeId
-        if (req.session.cart.cupcakeIdOnCart) {
-          req.session.cart.cupcakeIdOnCart.dataValues.quantity =
-            req.body.quantity
-        } else {
-          const cupcakeFromDb = await Cupcake.findByPk(req.body.cupcakeId)
-          req.session.cart.cupcakeIdOnCart = cupcakeFromDb
-          req.session.cart.cupcakeIdOnCart.quantity += req.body.quantity
+        for (let i = 0; i < req.session.cart.length; i++) {
+          let oldOrder = req.session.cart[i]
+          if (oldOrder.id === newOrder.id) {
+            console.log('THIS IS TRUE')
+            const newSum = Number(oldOrder.quantity) + Number(newOrder.quantity)
+            console.log('This is the new sum', newSum)
+
+            oldOrder.quantity = String(newSum)
+            req.session.save()
+          } else {
+            console.log('THIS IS FALSE')
+            req.session.cart.push(newOrder)
+            // req.session.save()
+          }
         }
       }
     } else {
