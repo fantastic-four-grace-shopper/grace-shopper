@@ -13,7 +13,6 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user === undefined) {
-      console.log('REQ.SESSION IS: ', req.session)
       res.json(req.session.cart)
     } else {
       const userId = req.user.id
@@ -71,9 +70,7 @@ router.post('/', async (req, res, next) => {
         for (let i = 0; i < req.session.cart.length; i++) {
           let oldOrder = req.session.cart[i]
           if (oldOrder.id === newOrder.id) {
-            console.log('THIS IS TRUE')
             const newSum = Number(oldOrder.quantity) + Number(newOrder.quantity)
-            console.log('This is the new sum', newSum)
             oldOrder.quantity = String(newSum)
             req.session.save()
           }
@@ -134,13 +131,18 @@ router.put('/checkout', async (req, res, next) => {
 
 router.delete('/empty', async (req, res, next) => {
   try {
-    const orderToDelete = await Order.destroy({
-      where: {
-        userId: req.user.id,
-        completed: false
-      }
-    })
-    res.json(orderToDelete)
+    if (req.user === undefined) {
+      req.session.cart = []
+      req.session.save()
+    } else {
+      const orderToDelete = await Order.destroy({
+        where: {
+          userId: req.user.id,
+          completed: false
+        }
+      })
+      res.json(orderToDelete)
+    }
   } catch (err) {
     next(err)
   }
@@ -148,20 +150,27 @@ router.delete('/empty', async (req, res, next) => {
 
 router.delete('/:cupcakeId', async (req, res, next) => {
   try {
-    const userId = req.user.id
-    const foundOrder = await Order.findOne({
-      where: {
-        userId,
-        completed: false
-      }
-    })
-    const deleted = await OrderCupcake.destroy({
-      where: {
-        cupcakeId: req.params.cupcakeId,
-        orderId: foundOrder.id
-      }
-    })
-    res.json(deleted)
+    if (req.user === undefined) {
+      req.session.cart = req.session.cart.filter(function(cupcake) {
+        return cupcake.id !== Number(req.params.cupcakeId)
+      })
+      res.json(req.session.cart)
+    } else {
+      const userId = req.user.id
+      const foundOrder = await Order.findOne({
+        where: {
+          userId,
+          completed: false
+        }
+      })
+      const deleted = await OrderCupcake.destroy({
+        where: {
+          cupcakeId: req.params.cupcakeId,
+          orderId: foundOrder.id
+        }
+      })
+      res.json(deleted)
+    }
   } catch (err) {
     next(err)
   }
