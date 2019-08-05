@@ -28,22 +28,26 @@ router.get('/', async (req, res, next) => {
             completed: false
           }
         })
-        const orderId = userOrder.id
-        const cupcakesInOrder = await OrderCupcake.findAll({
-          where: {
-            orderId
+        if (!userOrder) {
+          res.json([])
+        } else {
+          const orderId = userOrder.id
+          const cupcakesInOrder = await OrderCupcake.findAll({
+            where: {
+              orderId
+            }
+          })
+          let cupcakeArr = []
+          for (let i = 0; i < cupcakesInOrder.length; i++) {
+            let obj = cupcakesInOrder[i]
+            let cupcakeId = obj.cupcakeId
+            let quantity = obj.quantity
+            let cupcake = await Cupcake.findByPk(cupcakeId)
+            cupcake.dataValues.quantity = quantity
+            cupcakeArr.push(cupcake)
           }
-        })
-        let cupcakeArr = []
-        for (let i = 0; i < cupcakesInOrder.length; i++) {
-          let obj = cupcakesInOrder[i]
-          let cupcakeId = obj.cupcakeId
-          let quantity = obj.quantity
-          let cupcake = await Cupcake.findByPk(cupcakeId)
-          cupcake.dataValues.quantity = quantity
-          cupcakeArr.push(cupcake)
+          res.json(cupcakeArr)
         }
-        res.json(cupcakeArr)
       }
     }
   } catch (err) {
