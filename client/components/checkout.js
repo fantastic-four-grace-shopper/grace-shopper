@@ -1,5 +1,5 @@
 import React from 'react'
-import {getCartThunk, deleteOrderThunk, completeOrderThunk} from '../store/cart'
+import {getCartThunk, deleteOrderThunk} from '../store/cart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -103,7 +103,7 @@ class CheckOut extends React.Component {
           <button
             type="submit"
             id="confirmButton"
-            onClick={() => this.props.completeOrderThunk()}
+            // onClick={() => this.props.completeOrderThunk()}
           >
             Confirm Order
           </button>
@@ -123,8 +123,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCartThunk: () => dispatch(getCartThunk()),
-    deleteOrderThunk: id => dispatch(deleteOrderThunk(id)),
-    completeOrderThunk: () => dispatch(completeOrderThunk())
+    deleteOrderThunk: id => dispatch(deleteOrderThunk(id))
+    // completeOrderThunk: () => dispatch(completeOrderThunk())
   }
 }
 

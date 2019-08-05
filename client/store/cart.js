@@ -8,8 +8,8 @@ import history from '../history'
 const POST_ORDER = 'POST_ORDER'
 const GET_ORDER = 'GET_ORDER'
 const DELETE_ORDER = 'DELETE-ORDER'
-const CLEAR_CART = 'CLEAR_CART'
-const COMPLETE_ORDER = 'COMPLETE_ORDER'
+// const CLEAR_CART = 'CLEAR_CART'
+// const COMPLETE_ORDER = 'COMPLETE_ORDER'
 
 /**
  * INITIAL STATE
@@ -23,13 +23,13 @@ const initialCartstate = {
  * ACTION CREATORS
  */
 
-const completedOrder = () => ({
-  type: COMPLETE_ORDER
-})
+// const completedOrder = () => ({
+//   type: COMPLETE_ORDER
+// })
 
-const clearCart = () => ({
-  type: CLEAR_CART
-})
+// const clearCart = () => ({
+//   type: CLEAR_CART
+// })
 
 const postedOrder = order => ({
   type: POST_ORDER,
@@ -49,23 +49,23 @@ const deleteOrder = cupcakeId => ({
  * THUNK CREATORS
  */
 
-export const completeOrderThunk = () => async dispatch => {
-  try {
-    await axios.put('/api/cart/checkout')
-    dispatch(completedOrder())
-  } catch (err) {
-    console.log('error completing purchase', err)
-  }
-}
+// export const completeOrderThunk = () => async dispatch => {
+//   try {
+//     await axios.put('/api/cart/checkout')
+//     dispatch(completedOrder())
+//   } catch (err) {
+//     console.log('error completing purchase', err)
+//   }
+// }
 
-export const clearCartThunk = () => async dispatch => {
-  try {
-    await axios.delete('/api/cart/empty')
-    dispatch(clearCart())
-  } catch (err) {
-    console.log('error clearing cart', err)
-  }
-}
+// export const clearCartThunk = () => async dispatch => {
+//   try {
+//     await axios.delete('/api/cart/empty')
+//     dispatch(clearCart())
+//   } catch (err) {
+//     console.log('error clearing cart', err)
+//   }
+// }
 
 export const postCartThunk = order => async dispatch => {
   try {
@@ -110,18 +110,18 @@ export default function cartReducer(state = initialCartstate, action) {
         ...state,
         myOrder: state.myOrder.filter(order => order.id !== action.cupcakeId)
       }
-    case CLEAR_CART:
-      return {
-        ...state,
-        newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
-        myOrder: [] //coming from database
-      }
-    case COMPLETE_ORDER:
-      return {
-        ...state,
-        newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
-        myOrder: [] //coming from database
-      }
+    // case CLEAR_CART:
+    //   return {
+    //     ...state,
+    //     newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
+    //     myOrder: [] //coming from database
+    //   }
+    // case COMPLETE_ORDER:
+    //   return {
+    //     ...state,
+    //     newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
+    //     myOrder: [] //coming from database
+    //   }
     default:
       return state
   }
