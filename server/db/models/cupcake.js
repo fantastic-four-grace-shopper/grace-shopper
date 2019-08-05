@@ -7,11 +7,14 @@ const Cupcake = db.define('cupcake', {
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
   imageUrl: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    }
   },
   description: {
     type: Sequelize.TEXT
