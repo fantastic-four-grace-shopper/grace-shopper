@@ -44,7 +44,6 @@ describe('<SingleCupcake /> component', () => {
   const renderedSingleCupcake = shallow(
     <SingleCupcake single={state.cupcake} store={store} />
   )
-  console.log('THIS IS OUR COMOOENTEN', renderedSingleCupcake)
   xit('renders the name of the cupcake which should be inside of a h1', () => {
     expect(renderedSingleCupcake.find('h1')).to.equal('Rose Champagne')
   })
