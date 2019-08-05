@@ -116,14 +116,19 @@ router.post('/', async (req, res, next) => {
 
 router.put('/checkout', async (req, res, next) => {
   try {
-    const foundOrder = await Order.findOne({
-      where: {
-        userId: req.user.id,
-        completed: false
-      }
-    })
-    const updatedOrder = await foundOrder.update({completed: true})
-    res.json(updatedOrder)
+    if (req.user === undefined) {
+      req.session.cart = []
+      res.json(req.session.cart)
+    } else {
+      const foundOrder = await Order.findOne({
+        where: {
+          userId: req.user.id,
+          completed: false
+        }
+      })
+      const updatedOrder = await foundOrder.update({completed: true})
+      res.json(updatedOrder)
+    }
   } catch (err) {
     next(err)
   }
@@ -133,7 +138,7 @@ router.delete('/empty', async (req, res, next) => {
   try {
     if (req.user === undefined) {
       req.session.cart = []
-      req.session.save()
+      res.json(req.session.cart)
     } else {
       const orderToDelete = await Order.destroy({
         where: {
