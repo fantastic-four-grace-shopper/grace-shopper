@@ -94,7 +94,8 @@ router.post('/', async (req, res, next) => {
       }
       const cupcakeToUpdate = await OrderCupcake.findOne({
         where: {
-          cupcakeId: req.body.cupcakeId
+          cupcakeId: req.body.cupcakeId,
+          orderId: foundOrder.id
         }
       })
       if (cupcakeToUpdate) {
