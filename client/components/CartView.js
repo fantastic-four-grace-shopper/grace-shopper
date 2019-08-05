@@ -1,6 +1,5 @@
-import ls from 'local-storage'
 import React from 'react'
-import {getCartThunk, deleteOrderThunk} from '../store/cart'
+import {getCartThunk, deleteOrderThunk, clearCartThunk} from '../store/cart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -21,21 +20,19 @@ class CartView extends React.Component {
       }
       return sumTotal
     }
-    //const items = window.ls.geti
-
     return (
       <div>
         <h3>Your Shopping Cart</h3>
         <div>
           {this.props.order.map((cupcakeObj, i) => (
             <div key={i}>
-              <img src={cupcakeObj.imageUrl} />
+              <img src={cupcakeObj.imageUrl} className="cupcakes" />
               <p> {cupcakeObj.name} </p>
-              <p> {cupcakeObj.price} $</p>
+              <p> ${cupcakeObj.price} </p>
               <p>
                 {' '}
-                {cupcakeObj.quantity} cupcakes,{' '}
-                {cupcakeObj.price * cupcakeObj.quantity} ${' '}
+                {cupcakeObj.quantity} cupcakes, ${cupcakeObj.price *
+                  cupcakeObj.quantity}{' '}
               </p>
               <button
                 type="submit"
@@ -45,30 +42,35 @@ class CartView extends React.Component {
               </button>
             </div>
           ))}
-          <p>Your Total: {total(this.props.order)} $</p>
+          <p>Your Total: ${total(this.props.order)} </p>
           {this.props.order.length > 0 && (
-            <Link to="/checkout">
-              <button>Checkout</button>
-            </Link>
+            <div>
+              <Link to="/checkout">
+                <button type="button">Checkout</button>
+              </Link>
+              <br />
+              <br />
+              <button type="button" onClick={() => this.props.clearCartThunk()}>
+                Clear your cart
+              </button>
+            </div>
           )}
         </div>
       </div>
     )
   }
 }
-
 const mapStateToProps = state => {
   return {
     ...state,
     order: state.cart.myOrder
   }
 }
-
 const mapDispatchToProps = dispatch => {
   return {
     getCartThunk: () => dispatch(getCartThunk()),
-    deleteOrderThunk: id => dispatch(deleteOrderThunk(id))
+    deleteOrderThunk: id => dispatch(deleteOrderThunk(id)),
+    clearCartThunk: () => dispatch(clearCartThunk())
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(CartView)

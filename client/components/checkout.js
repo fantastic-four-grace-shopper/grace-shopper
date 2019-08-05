@@ -1,6 +1,7 @@
 import React from 'react'
-import {getCartThunk, deleteOrderThunk} from '../store/cart'
+import {getCartThunk, deleteOrderThunk, completeOrderThunk} from '../store/cart'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class CheckOut extends React.Component {
   constructor(props) {
@@ -19,23 +20,21 @@ class CheckOut extends React.Component {
       }
       return sumTotal
     }
-    //const items = window.ls.geti
-
     return (
       <div>
         <div className="itemSummary">
           <h2>Item Summary</h2>
-          <table>
-            <thead>
-              <tr>
+          <table className="table">
+            <tr>
+              <div className="tableRow">
                 <th>Cupcake Name</th>
                 <th>Price</th>
                 <th>Quantity</th>
-              </tr>
-            </thead>
+              </div>
+            </tr>
             <tr>
               {this.props.order.map(cupcakeObj => (
-                <div key={cupcakeObj.id}>
+                <div key={cupcakeObj.id} className="tableRow">
                   <td>{cupcakeObj.name} </td>
                   <td>${cupcakeObj.price}</td>
                   <td>{cupcakeObj.quantity} </td>
@@ -43,6 +42,7 @@ class CheckOut extends React.Component {
               ))}
             </tr>
           </table>
+          <p>Your Total: ${total(this.props.order)} </p>
         </div>
 
         <div />
@@ -99,9 +99,15 @@ class CheckOut extends React.Component {
             </form>
           </div>
         </div>
-        <button type="submit" id="confirmButton">
-          Confirm Order
-        </button>
+        <Link to="/thankYou">
+          <button
+            type="submit"
+            id="confirmButton"
+            onClick={() => this.props.completeOrderThunk()}
+          >
+            Confirm Order
+          </button>
+        </Link>
       </div>
     )
   }
@@ -117,7 +123,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCartThunk: () => dispatch(getCartThunk()),
-    deleteOrderThunk: id => dispatch(deleteOrderThunk(id))
+    deleteOrderThunk: id => dispatch(deleteOrderThunk(id)),
+    completeOrderThunk: () => dispatch(completeOrderThunk())
   }
 }
 

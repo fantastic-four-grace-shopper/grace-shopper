@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-
 const Navbar = ({handleClick, isLoggedIn}, props) => {
   return (
     <div>
       <h1>Best Cupcakes by fantasticFour</h1>
       <div id="links" />
       <nav id="links">
-        <Link to="/cupcakes">Cupcakes</Link>
+        <Link to="/">Cupcakes</Link>
         <div id="cartLink">
-          <Link to="/cart">Cart</Link>
-          <img className="cart" src="/images/shopping_bag.png" />
+          <Link to="/cart">
+            Cart <img className="cart" src="/images/shopping_bag.png" />
+          </Link>
         </div>
-
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
+            <Link to="/profile">Profile</Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
@@ -36,7 +35,6 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
     </div>
   )
 }
-
 /**
  * CONTAINER
  */
@@ -45,7 +43,6 @@ const mapState = state => {
     isLoggedIn: !!state.user.id
   }
 }
-
 const mapDispatch = dispatch => {
   return {
     handleClick() {
@@ -53,9 +50,7 @@ const mapDispatch = dispatch => {
     }
   }
 }
-
 export default connect(mapState, mapDispatch)(Navbar)
-
 /**
  * PROP TYPES
  */

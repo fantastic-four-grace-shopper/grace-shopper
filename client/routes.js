@@ -8,6 +8,7 @@ import AllCupcakes from './components/AllCupcakes'
 import SingleCupcake from './components/oneCupcake'
 import CartView from './components/CartView'
 import CheckOut from './components/checkout'
+import ThankYou from './components/ThankYou'
 
 /**
  * COMPONENT
@@ -22,7 +23,6 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         {/* isLoggedIn && (
@@ -33,17 +33,11 @@ class Routes extends Component {
          )}
         {/* Displays our Login component as a fallback */}
         <Route exact path="/" component={AllCupcakes} />
-        <Route exact path="/home" component={UserHome} />
-        <Route exact path="/cupcakes" component={AllCupcakes} />
-        <Route exact path="/cupcakes/:id" component={SingleCupcake} />
+        <Route exact path="/profile" component={UserHome} />
+        <Route exact path="/cupcake/:id" component={SingleCupcake} />
         <Route exact path="/cart" component={CartView} />
-        <Route exact path="/natalie" component={Login} />
-
-        {/* DELETE LATTTTERRRRRR */}
-
+        <Route exact path="/thankYou" component={ThankYou} />
         <Route exact path="/checkout" component={CheckOut} />
-
-        {/* DELETE LATTTTERRRRRR */}
 
         {/* // render={routeProps => <SingleCupcake {...routeProps} />} */}
       </Switch>
