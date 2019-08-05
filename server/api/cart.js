@@ -13,7 +13,12 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     if (req.user === undefined) {
-      res.json(req.session.cart)
+      if (req.session.cart === undefined) {
+        req.session.cart = []
+        res.json(req.session.cart)
+      } else {
+        res.json(req.session.cart)
+      }
     } else {
       const userId = req.user.id
       if (userId) {
