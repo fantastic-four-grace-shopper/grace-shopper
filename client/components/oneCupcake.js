@@ -10,7 +10,7 @@ class SingleCupcake extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      quantity: 0,
+      quantity: 1,
       cupcakeId: this.props.match.params.id
     }
 
@@ -49,7 +49,7 @@ class SingleCupcake extends React.Component {
           <input
             type="number"
             name="quantity"
-            min="0"
+            min="1"
             max="100"
             value={this.state.quantity}
             onChange={this.handleChange}
