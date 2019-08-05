@@ -32,7 +32,7 @@ class SingleCupcake extends React.Component {
     let cupcake = this.props.single
     this.props.postThunk(this.state)
     this.setState({
-      quantity: 0,
+      quantity: 1,
       id: cupcake.id
     })
   }
