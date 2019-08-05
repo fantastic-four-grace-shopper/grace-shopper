@@ -1,5 +1,5 @@
 import React from 'react'
-import {getCartThunk, deleteOrderThunk} from '../store/cart'
+import {getCartThunk, deleteOrderThunk, clearCartThunk} from '../store/cart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
@@ -50,9 +50,9 @@ class CartView extends React.Component {
               </Link>
               <br />
               <br />
-              {/* <button type="button" onClick={() => this.props.clearCartThunk()} >
+              <button type="button" onClick={() => this.props.clearCartThunk()}>
                 Clear your cart
-              </button> */}
+              </button>
             </div>
           )}
         </div>
@@ -69,8 +69,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getCartThunk: () => dispatch(getCartThunk()),
-    deleteOrderThunk: id => dispatch(deleteOrderThunk(id))
-    // clearCartThunk: () => dispatch(clearCartThunk())
+    deleteOrderThunk: id => dispatch(deleteOrderThunk(id)),
+    clearCartThunk: () => dispatch(clearCartThunk())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CartView)
