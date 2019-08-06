@@ -6,7 +6,7 @@ import ls from 'local-storage'
 import Navbar from './navbar'
 import {postCartThunk} from '../store/cart'
 
-class SingleCupcake extends React.Component {
+export class SingleCupcake extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
