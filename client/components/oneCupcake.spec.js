@@ -1,8 +1,5 @@
-//import {expect} from 'chai'
 const chai = require('chai')
 const expect = chai.expect
-// const chaiThings = require('chai-things')
-// chai.use(chaiThings)
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
@@ -48,24 +45,23 @@ describe('<SingleCupcake /> component', () => {
     )
   })
   it('renders the name of the cupcake which should be inside of a h2', () => {
-    // console.log('IS THIS WORKING', renderedSingleCupcake)
     expect(renderedSingleCupcake.find('h2').text()).to.equal('Rose Champagne')
-    // console.log(
-    //   'IS THIS WORKING',
-    //   renderedSingleCupcake
-    //     .dive()
-    //     .find('p')
-    //     .debug()
-    //     .to.have.lengthOf(2)
-    // )
+  })
+  it('renders the description of a cupcake which should be inside of a p tag', () => {
+    expect(renderedSingleCupcake.find('.italics').text()).to.equal(
+      'French Vanilla'
+    )
+  })
+  it('renders the price of a cupcake which should be inside of a p tag', () => {
+    expect(renderedSingleCupcake.find('.price').text()).to.equal(' Price: $1')
   })
 
-  // it('renders list items for the campuses passed in as props', async () => {
-  //   const campusRecords = await Campus.bulkCreate(campuses)
-  //   //we are creating the campuses in the database so the extra credit in tier-4 doesn't break this spec.
-  //   const wrapper = shallow(<CampusList campuses={campusRecords} />);
-  //   const listItems = wrapper.find('li');
-  //   expect(listItems).to.have.length(3);
-  //   expect(listItems.at(2).text()).to.contain('Pluto');
-  // });
+  it('renders a "add to cart" button', () => {
+    expect(renderedSingleCupcake.find('.submit').text()).to.equal('Add to Cart')
+  })
+  it('renders a "back to all cupcakes" link', () => {
+    expect(renderedSingleCupcake.find('#back-button').text()).to.equal(
+      '<Link />'
+    )
+  })
 })
