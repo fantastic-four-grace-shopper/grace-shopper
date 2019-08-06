@@ -19,8 +19,7 @@ describe('cupcakes action creator', () => {
 
 describe('cupcakes', () => {
   const initialState = {
-    cupcakes,
-    single: {}
+    cupcakes
   }
 
   const newState = reducer(initialState, {
