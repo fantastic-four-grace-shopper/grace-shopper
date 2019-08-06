@@ -32,7 +32,8 @@ class CartView extends React.Component {
                 <p>Price: ${cupcakeObj.price} </p>
                 <p>
                   {' '}
-                  Quantity: {cupcakeObj.quantity} cupcakes (${cupcakeObj.price *
+                  Quantity: {cupcakeObj.quantity}{' '}
+                  {cupcakeObj.quantity === 1 ? 'cupcake' : 'cupcakes'} (${cupcakeObj.price *
                     cupcakeObj.quantity})
                 </p>
 

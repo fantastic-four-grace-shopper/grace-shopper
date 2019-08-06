@@ -3,7 +3,8 @@
   font-family: Verdana, Geneva, sans-serif;
 }
 body {
-  background-color: rgb(223, 175, 223);
+  background-color: rgb(229, 204, 255);
+  /* background-color: rgb(223, 175, 223); */
   color: purple;
   text-align: center;
   height: 100vh;
@@ -64,7 +65,7 @@ form div {
   justify-content: space-between;
   margin: 0 180px 0 180px;
   align-content: center;
-  line-height: 20pt;
+  line-height: 25pt;
 }
 #space-below {
   margin: 20px 0 30px 0;
@@ -183,7 +184,9 @@ img.cupcakes {
 }
 #white-checkout {
   background-color: white;
-  margin: 50px 400px 200px 400px;
+  align-content: center;
+  margin: 50px 300px 200px 400px;
+  max-width: 600px;
 }
 #gray1 {
   color: darkslategray;
