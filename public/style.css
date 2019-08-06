@@ -128,6 +128,14 @@ input {
 #sub-heading {
   font-size: 22pt;
 }
+#foot {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
 .headers {
   font-size: 20pt;
   margin: 40px 0 40px 0;
