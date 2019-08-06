@@ -18,15 +18,17 @@ class AllCupcakes extends React.Component {
     return (
       <div>
         {/* <Navbar /> */}
-        <h3>Cupcakes</h3>
+        <h3 className="headers">Our Cupcakes</h3>
         <div id="allCupcakesContainer">
           {cupcakes.map(cupcake => (
             <div key={cupcake.id} className="cupBox">
               <Link to={`/cupcake/${cupcake.id}`}>
                 <img className="cupcakes" src={cupcake.imageUrl} />
-                <p> {cupcake.name} </p>
+                <p id="space-below">
+                  {' '}
+                  {cupcake.name} | ${cupcake.price}
+                </p>
               </Link>
-              <p> ${cupcake.price}</p>
             </div>
           ))}
         </div>

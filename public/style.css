@@ -1,14 +1,15 @@
 * {
   box-sizing: border-box;
-  font-family: arial, sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
 }
 body {
-  background-color: rgb(223, 175, 223);
+  background-color: rgb(229, 204, 255);
+  /* background-color: rgb(223, 175, 223); */
   color: purple;
   text-align: center;
   height: 100vh;
   padding: 0;
-  margin: 0;
+  margin: 0 0 150px 0;
   width: 100vw;
 }
 a {
@@ -25,14 +26,18 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-.cart {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+#total {
+  margin: 50px;
+}
+#cart {
+  width: 35px;
+  height: 35px;
+  margin: 0 0 30px 10px;
+  padding: 0 0 5px 0;
 }
 .cupcakes {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: auto;
   border-radius: 50%;
 }
 #allCupcakesContainer {
@@ -41,36 +46,62 @@ form div {
   justify-content: center;
   flex-wrap: wrap;
   align-content: space-around;
+  margin: 20px 50px 50px 50px;
 }
 .cupBox {
   flex-basis: 33%;
 }
+.cursive {
+  font-family: 'Kaushan Script', cursive;
+}
+#main-header {
+  font-size: 50pt;
+  margin: 0 0 5px 0;
+  padding: 20px 0 0 0;
+}
 #links {
   display: flex;
   flex-basis: 40%;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 180px 0 180px;
+  align-content: center;
+  line-height: 25pt;
+}
+#space-below {
+  margin: 20px 0 30px 0;
 }
 #cartLink {
   display: flex;
-  justify-content: center;
-  align-items: baseline;
+  justify-items: center;
+  align-content: center;
 }
-.creditCardForm,
-.itemSummary {
+div.itemSummary {
   max-width: 400px;
   background-color: #fff;
-  margin: 100px auto;
   color: #4c4e56;
-}
-.itemSummary {
   text-align: center;
+  margin: 40px auto;
 }
-#confirmButton {
+
+input {
+  border-radius: 15%;
+  margin: 0 5px 0 0;
+  align-content: center;
+}
+.confirmButton {
   width: 300px;
   font-size: 24px;
   background-color: #2ec4a5;
   color: white;
   margin-bottom: 20px;
+  border-color: #2ec4a5;
+  border-radius: 15px;
+}
+.italics {
+  font-style: italic;
+}
+.price {
+  font-weight: 900;
 }
 .table {
   display: flex;
@@ -85,9 +116,86 @@ form div {
   min-width: 300px;
 }
 #thankYouImage {
-  height: 200px;
+  height: 400px;
+  margin: 50px 50px 0 50px;
 }
-
+#order-placed {
+  color: white;
+}
 #sad-cupcake {
   height: 400px;
+}
+#sub-heading {
+  font-size: 22pt;
+}
+.headers {
+  font-size: 20pt;
+  margin: 40px 0 40px 0;
+  font-family: 'Kaushan Script', cursive;
+}
+.submit {
+  margin: 0 0 50px 0;
+}
+#back-button {
+  font-size: 10pt;
+  margin: 10px 0 150px 0;
+}
+#white {
+  background-color: white;
+}
+
+#cupcake-container {
+  display: flex;
+  justify-content: center;
+  background-color: whitesmoke;
+  margin: 20px 230px 20px 230px;
+  border-radius: 10px;
+}
+img.cupcakes {
+  margin: 10px;
+}
+#cart-summary {
+  display: flex;
+  justify-content: space-between;
+  /* width: 300px; */
+  background-color: white;
+  margin: 5px 50px 5px 40px;
+}
+#sub-container {
+  margin: 10px;
+  text-align: left;
+}
+.remove {
+  background-color: rgb(223, 175, 223);
+  border-radius: 10px;
+}
+
+#bottom-margin {
+  margin: 30px 0 50px 0;
+}
+#checkout {
+  width: 200px;
+  height: 75px;
+  background-color: rgb(0, 127, 255);
+  font-size: 15pt;
+  color: whitesmoke;
+  border-color: rgb(0, 127, 255);
+  border-radius: 15pt;
+}
+#white-checkout {
+  background-color: white;
+  align-content: center;
+  margin: 50px 300px 200px 400px;
+  max-width: 600px;
+}
+#gray1 {
+  color: darkslategray;
+  padding: 30px 0 0 0;
+}
+#gray2 {
+  color: darkslategray;
+  margin: 30px 0 10px 0;
+}
+#total-margin {
+  margin: 10px 0 50px 0;
 }

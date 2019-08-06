@@ -22,35 +22,46 @@ class CartView extends React.Component {
     }
     return (
       <div>
-        <h3>Your Shopping Cart</h3>
+        <h2 className="headers">Your Shopping Cart</h2>
         <div>
           {this.props.order.map((cupcakeObj, i) => (
-            <div key={i}>
+            <div id="cupcake-container" key={i}>
               <img src={cupcakeObj.imageUrl} className="cupcakes" />
-              <p> {cupcakeObj.name} </p>
-              <p> ${cupcakeObj.price} </p>
-              <p>
-                {' '}
-                {cupcakeObj.quantity} cupcakes, ${cupcakeObj.price *
-                  cupcakeObj.quantity}{' '}
-              </p>
-              <button
-                type="submit"
-                onClick={() => this.props.deleteOrderThunk(cupcakeObj.id)}
-              >
-                Remove order
-              </button>
+              <div id="sub-container">
+                <p>Cupcake: {cupcakeObj.name} </p>
+                <p>Price: ${cupcakeObj.price} </p>
+                <p>
+                  {' '}
+                  Quantity: {cupcakeObj.quantity}{' '}
+                  {cupcakeObj.quantity === 1 ? 'cupcake' : 'cupcakes'} (${cupcakeObj.price *
+                    cupcakeObj.quantity})
+                </p>
+
+                <button
+                  type="submit"
+                  onClick={() => this.props.deleteOrderThunk(cupcakeObj.id)}
+                  className="remove"
+                >
+                  Remove order
+                </button>
+              </div>
             </div>
           ))}
-          <p>Your Total: ${total(this.props.order)} </p>
+          <h3 id="total">Your Total: ${total(this.props.order)} </h3>
           {this.props.order.length > 0 && (
             <div>
               <Link to="/checkout">
-                <button type="button">Checkout</button>
+                <button type="button" className="confirmButton">
+                  Checkout
+                </button>
               </Link>
               <br />
               <br />
-              <button type="button" onClick={() => this.props.clearCartThunk()}>
+              <button
+                type="button"
+                onClick={() => this.props.clearCartThunk()}
+                id="bottom-margin"
+              >
                 Clear your cart
               </button>
             </div>
