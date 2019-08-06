@@ -35,7 +35,6 @@ describe('Cart route', () => {
 
     it('GET /api/cart', async () => {
       const res = await agent.get('/api/cart/').expect(200)
-      console.log(res.body)
       expect(res.body).to.be.an('array')
     })
   }) // end describe('/api/users')
