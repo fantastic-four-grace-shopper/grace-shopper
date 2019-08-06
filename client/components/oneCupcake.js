@@ -41,7 +41,7 @@ class SingleCupcake extends React.Component {
     const cupcake = this.props.single
     return (
       <div>
-        <h2 className="one-header">{cupcake.name}</h2>
+        <h2 className="headers">{cupcake.name}</h2>
         <img className="cupcakes" src={cupcake.imageUrl} />
         <p className="italics">{cupcake.description}</p>
         <p className="price"> Price: ${cupcake.price}</p>
@@ -59,9 +59,9 @@ class SingleCupcake extends React.Component {
           </button>
         </form>
         <br />
-        <Link to="/" id="back-button">
-          Back to all cupcakes
-        </Link>
+        <div id="back-button">
+          <Link to="/">Back to all cupcakes</Link>
+        </div>
       </div>
     )
   }

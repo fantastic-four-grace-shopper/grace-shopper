@@ -4,11 +4,11 @@ const ThankYou = () => {
   return (
     <div>
       <img
-        src="https://media1.giphy.com/media/3ohs7JG6cq7EWesFcQ/giphy.gif"
+        src="https://media3.giphy.com/media/l0MYyDa8S9ghzNebm/giphy.gif"
         id="thankYouImage"
       />
       <br />
-      Your order has been placed!
+      <h2 id="order-placed">Your order has been placed!</h2>
     </div>
   )
 }

@@ -22,7 +22,7 @@ class CartView extends React.Component {
     }
     return (
       <div>
-        <h2 className="one-header">Your Shopping Cart</h2>
+        <h2 className="headers">Your Shopping Cart</h2>
         <div>
           {this.props.order.map((cupcakeObj, i) => (
             <div id="cupcake-container" key={i}>
@@ -46,7 +46,7 @@ class CartView extends React.Component {
               </div>
             </div>
           ))}
-          <h3>Your Total: ${total(this.props.order)} </h3>
+          <h3 id="total">Your Total: ${total(this.props.order)} </h3>
           {this.props.order.length > 0 && (
             <div>
               <Link to="/checkout">

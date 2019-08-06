@@ -18,9 +18,7 @@ class AllCupcakes extends React.Component {
     return (
       <div>
         {/* <Navbar /> */}
-        <h3 className="cursive" id="our-cupcakes">
-          Our Cupcakes
-        </h3>
+        <h3 className="headers">Our Cupcakes</h3>
         <div id="allCupcakesContainer">
           {cupcakes.map(cupcake => (
             <div key={cupcake.id} className="cupBox">
