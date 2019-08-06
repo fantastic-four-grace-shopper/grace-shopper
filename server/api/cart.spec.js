@@ -9,7 +9,7 @@ const User = db.model('user')
 const Cupcake = db.model('cupcake')
 const agent = require('supertest')(app)
 
-describe('Cart route For Guest User', () => {
+describe('Cart route', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
