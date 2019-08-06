@@ -19,7 +19,7 @@ const initialState = {
  * ACTION CREATORS
  */
 
-const gotAllCupcakes = all => ({type: GET_ALL_CUPCAKES, all})
+export const gotAllCupcakes = all => ({type: GET_ALL_CUPCAKES, all})
 const gotSingleCupcake = one => ({type: GET_SINGLE_CUPCAKE, one})
 /**
  * THUNK CREATORS
