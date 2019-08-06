@@ -35,6 +35,7 @@ class SingleCupcake extends React.Component {
       quantity: 1,
       id: cupcake.id
     })
+    throw alert('item added to your cart!')
   }
 
   render() {
