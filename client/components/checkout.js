@@ -102,7 +102,7 @@ class CheckOut extends React.Component {
         <Link to="/thankYou">
           <button
             type="submit"
-            id="confirmButton"
+            className="confirmButton"
             onClick={() => this.props.completeOrderThunk()}
           >
             Confirm Order

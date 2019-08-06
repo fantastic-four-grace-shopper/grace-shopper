@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: arial, sans-serif;
+  font-family: Verdana, Geneva, sans-serif;
 }
 body {
   background-color: rgb(223, 175, 223);
@@ -8,7 +8,7 @@ body {
   text-align: center;
   height: 100vh;
   padding: 0;
-  margin: 0;
+  margin: 0 0 150px 0;
   width: 100vw;
 }
 a {
@@ -25,14 +25,15 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-.cart {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+#cart {
+  width: 35px;
+  height: 35px;
+  margin: 0 0 30px 10px;
+  padding: 0 0 5px 0;
 }
 .cupcakes {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: auto;
   border-radius: 50%;
 }
 #allCupcakesContainer {
@@ -41,19 +42,37 @@ form div {
   justify-content: center;
   flex-wrap: wrap;
   align-content: space-around;
+  margin: 20px 50px 50px 50px;
 }
 .cupBox {
   flex-basis: 33%;
 }
+.cursive {
+  font-family: 'Kaushan Script', cursive;
+}
+#main-header {
+  font-size: 50pt;
+  margin: 0 0 5px 0;
+  padding: 20px 0 0 0;
+}
 #links {
   display: flex;
   flex-basis: 40%;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 125px 0 125px;
+  align-content: center;
+  line-height: 20pt;
+}
+.navMarg {
+  margin: 10px 10px 0 10px;
+}
+#space-below {
+  margin: 20px 0 30px 0;
 }
 #cartLink {
   display: flex;
-  justify-content: center;
-  align-items: baseline;
+  justify-items: center;
+  align-content: center;
 }
 .creditCardForm,
 .itemSummary {
@@ -65,12 +84,28 @@ form div {
 .itemSummary {
   text-align: center;
 }
-#confirmButton {
+.one-header {
+  margin: 30px 0 30px 0;
+}
+input {
+  border-radius: 15%;
+  margin: 0 5px 0 0;
+  align-content: center;
+}
+.confirmButton {
   width: 300px;
   font-size: 24px;
   background-color: #2ec4a5;
   color: white;
   margin-bottom: 20px;
+  border-color: #2ec4a5;
+  border-radius: 15px;
+}
+.italics {
+  font-style: italic;
+}
+.price {
+  font-weight: 900;
 }
 .table {
   display: flex;
@@ -90,4 +125,53 @@ form div {
 
 #sad-cupcake {
   height: 400px;
+}
+#sub-heading {
+  font-size: 22pt;
+}
+#our-cupcakes {
+  font-size: 18pt;
+  margin: 40px 0 40px 0;
+}
+.submit {
+  margin: 0 0 50px 0;
+}
+#back-button {
+  font-size: 10pt;
+}
+#white {
+  background-color: whitesmoke;
+}
+
+#cupcake-container {
+  display: flex;
+  justify-content: center;
+  background-color: whitesmoke;
+  margin: 20px 230px 20px 230px;
+  border-radius: 10px;
+}
+img.cupcakes {
+  margin: 10px;
+}
+
+#sub-container {
+  margin: 10px;
+  text-align: left;
+}
+.remove {
+  background-color: rgb(223, 175, 223);
+  border-radius: 10px;
+}
+
+#bottom-margin {
+  margin: 0 0 100px 0;
+}
+#checkout {
+  width: 200px;
+  height: 75px;
+  background-color: rgb(0, 127, 255);
+  font-size: 15pt;
+  color: whitesmoke;
+  border-color: rgb(0, 127, 255);
+  border-radius: 15pt;
 }

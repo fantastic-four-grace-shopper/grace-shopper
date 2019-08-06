@@ -5,20 +5,33 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn}, props) => {
   return (
-    <div>
-      <h1>Best Cupcakes by fantasticFour</h1>
+    <div id="white">
+      <h1 className="cursive" id="main-header">
+        Best Cupcakes
+      </h1>
+      <h2 className="cursive" id="sub-heading">
+        by Fantastic Four
+      </h2>
       <div id="links" />
       <nav id="links">
-        <Link to="/">Cupcakes</Link>
-        <div id="cartLink">
-          <Link to="/cart">
-            Cart <img className="cart" src="/images/shopping_bag.png" />
-          </Link>
-        </div>
+        <Link to="/" className="navMarg">
+          Cupcakes
+        </Link>
+        {/* <div> */}
+        <Link to="/cart" className="navMarg" id="cartLink">
+          Cart
+          <img
+            id="cart"
+            src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/shopping-circle-blue-512.png"
+          />
+        </Link>
+        {/* </div> */}
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
-            <Link to="/profile">Profile</Link>
+            <Link to="/profile" className="navMarg">
+              Profile
+            </Link>
             <a href="#" onClick={handleClick}>
               Logout
             </a>
@@ -26,12 +39,16 @@ const Navbar = ({handleClick, isLoggedIn}, props) => {
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/login" className="navMarg">
+              Login
+            </Link>
+            <Link to="/signup" className="navMarg">
+              Sign Up
+            </Link>
           </div>
         )}
       </nav>
-      <hr />
+      {/* <hr /> */}
     </div>
   )
 }

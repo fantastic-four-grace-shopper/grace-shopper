@@ -41,10 +41,10 @@ class SingleCupcake extends React.Component {
     const cupcake = this.props.single
     return (
       <div>
-        <h1>{cupcake.name}</h1>
+        <h2 className="one-header">{cupcake.name}</h2>
         <img className="cupcakes" src={cupcake.imageUrl} />
-        <p>{cupcake.description}</p>
-        <p> ${cupcake.price}</p>
+        <p className="italics">{cupcake.description}</p>
+        <p className="price"> Price: ${cupcake.price}</p>
         <form onSubmit={this.handleSubmit}>
           <input
             type="number"
@@ -54,10 +54,14 @@ class SingleCupcake extends React.Component {
             value={this.state.quantity}
             onChange={this.handleChange}
           />
-          <button type="submit">Add to Cart</button>
+          <button type="submit" className="submit">
+            Add to Cart
+          </button>
         </form>
         <br />
-        <Link to="/">Back to all cupcakes</Link>
+        <Link to="/" id="back-button">
+          Back to all cupcakes
+        </Link>
       </div>
     )
   }
