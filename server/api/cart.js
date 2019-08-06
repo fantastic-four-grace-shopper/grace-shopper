@@ -55,6 +55,43 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//GET request to retrieve a logged in user's order history
+router.get('/orders', async (req, res, next) => {
+  try {
+    if (req.user === undefined) {
+      res.json([])
+    } else {
+      const userId = req.user.id
+      const userOrder = await Order.findAll({
+        where: {
+          userId,
+          completed: true
+        }
+      })
+      let cupcakeArr = []
+      for (let i = 0; i < userOrder.length; i++) {
+        const userOrderId = userOrder[i].id
+        const cupcakesInOrder = await OrderCupcake.findAll({
+          where: {
+            orderId: userOrderId
+          }
+        })
+        for (let j = 0; j < cupcakesInOrder.length; j++) {
+          let obj = cupcakesInOrder[j]
+          let cupcakeId = obj.cupcakeId
+          let quantity = obj.quantity
+          let cupcake = await Cupcake.findByPk(cupcakeId)
+          cupcake.dataValues.quantity = quantity
+          cupcakeArr.push(cupcake)
+        }
+      }
+      res.json(cupcakeArr)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 //POST request to add an item to a user or guest cart
 router.post('/', async (req, res, next) => {
   try {

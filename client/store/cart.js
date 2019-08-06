@@ -10,18 +10,25 @@ const GET_ORDER = 'GET_ORDER'
 const DELETE_ORDER = 'DELETE-ORDER'
 const CLEAR_CART = 'CLEAR_CART'
 const COMPLETE_ORDER = 'COMPLETE_ORDER'
+const GET_ORDER_HISTORY = 'GET_ORDER_HISTORY'
 
 /**
  * INITIAL STATE
  */
 const initialCartstate = {
   newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
-  myOrder: [] //coming from database
+  myOrder: [], //coming from database
+  orderHistory: []
 }
 
 /**
  * ACTION CREATORS
  */
+
+const getOrderHistory = order => ({
+  type: GET_ORDER_HISTORY,
+  order
+})
 
 const completedOrder = () => ({
   type: COMPLETE_ORDER
@@ -48,6 +55,16 @@ const deleteOrder = cupcakeId => ({
 /**
  * THUNK CREATORS
  */
+
+export const orderHistoryThunk = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/cart/orders')
+    const myOrder = res.data
+    dispatch(getOrderHistory(myOrder))
+  } catch (err) {
+    console.log('error retrieving order', err)
+  }
+}
 
 export const completeOrderThunk = () => async dispatch => {
   try {
@@ -121,6 +138,11 @@ export default function cartReducer(state = initialCartstate, action) {
         ...state,
         newOrder: {quantity: null, cupcakeId: null}, //item added to cart, goes to database
         myOrder: [] //coming from database
+      }
+    case GET_ORDER_HISTORY:
+      return {
+        ...state,
+        orderHistory: action.order
       }
     default:
       return state
