@@ -36,8 +36,11 @@ describe('OrderCupcake model', () => {
     it('quantity is a number', () => {
       expect(typeof newOrderCupcake.quantity === 'number')
     })
-    it('cupcakeId foreign key cooresponds to the correct cupcake', () => {
+    it('pt1: cupcakeId foreign key cooresponds to the correct cupcake', () => {
       expect(newOrderCupcake.cupcakeId === newCupcake1.id).to.be.equal(true)
+    })
+    it('pt2: cupcakeId foreign key cooresponds to the correct cupcake', () => {
+      expect(newOrderCupcake.cupcakeId === newCupcake2.id).to.be.equal(false)
     })
     it('orderId foreign key cooresponds to the correct order', () => {
       expect(newOrderCupcake.orderId === newOrder.id).to.be.equal(true)
